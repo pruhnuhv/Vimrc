@@ -1,4 +1,4 @@
-"" GENERAL OPTIONS --------------------------------------
+
 filetype indent on " Enable file-type specific indentation
 
 filetype plugin on " Enable plugins
