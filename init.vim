@@ -1,28 +1,40 @@
+"" GENERAL OPTIONS --------------------------------------
 
-filetype indent on " Enable file-type specific indentation
-
+syntax on
+filetype indent on " Enable file specific indentation
 filetype plugin on " Enable plugins
 
 call plug#begin('~/.vim/plugged')
 Plug 'mhinz/vim-startify'
 Plug 'arcticicestudio/nord-vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'valloric/youcompleteme'
 Plug 'tpope/vim-commentary'
 Plug 'yggdroot/indentline'
 Plug 'vim-airline/vim-airline'
 Plug 'preservim/nerdtree'
+Plug 'sheerun/vim-polyglot'
+Plug 'eslint/eslint'
+Plug 'w0rp/ale'
 call plug#end()
+
+
+let g:ale_fixers = {
+ \ 'javascript': ['eslint']
+ \ }
+let g:ale_sign_error = '❌'
+let g:ale_sign_warning = '⚠️'
+let g:ale_fix_on_save = 1
+
 
 " NERDTree shouldn't end up being the only open vim tab
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-syntax on
-
 set title
 
-" Tab == 4 spaces
-set tabstop=4 " Number of visual spaces per TAB.
-set softtabstop=4 " Number of spaces per TAB while editing.
+" Tab == 2 spaces
+set tabstop=2 " Number of visual spaces per TAB.
+set softtabstop=2 " Number of spaces per TAB while editing.
+set shiftwidth=2 "Number of spaces when indenting using >
 set expandtab " Expand to 4 spaces when you press TAB.
 set smarttab " Navigate by a TAB's width.
 set autoindent " Automatically indent lines while editing.
@@ -48,15 +60,8 @@ set smartcase " Check for case when using mixed case.
 
 set wildmenu " Wildmenu for autocomplete in command mode.
 
-
 " Keybindings to go back to normal mode. Escape is too far.
 inoremap jk <esc>
-
-" Navigating splits, currently commented out.
-"nnoremap <C-J> <C-W><C-J>
-"nnoremap <C-K> <C-W><C-K>
-"nnoremap <C-L> <C-W><C-L>
-"nnoremap <C-H> <C-W><C-H>
 
 " Hardcode, turn  off arrow keys in normal mode   
 noremap <Up> <NOP>
@@ -64,15 +69,11 @@ noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 
-" Code folding
-"nnoremap <space> za
-
 " Run Python files
 autocmd filetype python nnoremap <buffer> <F5> :w<CR>:!clear;python3 %<CR>
 
 " Run Nodejs files
 autocmd filetype javascript nnoremap <buffer> <F5> :w<CR>:!clear;node %<CR>
-
 
 " Colorscheme is the basic nord currently.
 colorscheme nord
