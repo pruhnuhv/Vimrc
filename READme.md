@@ -1,4 +1,2 @@
-This is my vim rice made with love and taking inputs from all over the internet.
-I have used the minimalist vim-plug which makes it easier to install plugins.
-Also, currently my neovim is set to harcoding ie I've turned off the arrow keys to get used to the hjkl methods.
-If you want the same looks & functionalities for your NeoVim just clone this repo. (.config/nvim/ on a Linux OS)
+I've handpicked bits of the config from various various repositories, so, thanks to everyone that Open sourced their vimrcs. This is a simple stupid Vimrice catering to my fidgety brain. jk (I had to type j <space> k and delete the space because those two characters put me into Normal mode :').
+Copy the init.vim file to your .config/nvim folder (for neovim users) and do a :PlugInstall. Everything should workout hopefully. I am not using YouCompleteMe anymore so I have that commented out.
