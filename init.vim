@@ -1,11 +1,10 @@
-
 syntax on
 filetype indent on " Enable file specific indentation
 filetype plugin on " Enable plugins
 
 call plug#begin('~/.vim/plugged')
 Plug 'mhinz/vim-startify'
-"Plug 'arcticicestudio/nord-vim'
+Plug 'arcticicestudio/nord-vim'
 "Plug 'ycm-core/youcompleteme'
 Plug 'maxboisvert/vim-simple-complete'
 Plug 'tpope/vim-commentary'
@@ -18,19 +17,30 @@ Plug 'w0rp/ale'
 Plug 'vhda/verilog_systemverilog.vim'
 call plug#end()
 
+if &term =~ '^tmux'
+  let &t_BE="\<Esc>[?2004h"
+  let &t_BD="\<Esc>[?2004l"
+  let &t_PS="\<Esc>[200~"
+  let &t_PE="\<Esc>[201~"
+endif
+
+"use system clipboard
+set clipboard=unnamedplus
 
 let g:ale_sign_error = '❌'
 let g:ale_sign_warning = '⚠️'
 let g:ale_fix_on_save = 1
+let g:ale_linters = {'verilog_systemverilog' : ['verilator'],}
+let g:python_highlight_space_errors = 0
 
 " don't let NERDTree be the only open tab
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " set syntax to verilog for .v files
-autocmd BufNewFile,BufRead *.v,*.vs set syntax=verilog
+" autocmd BufNewFile,BufRead *.v,*.vs set syntax=verilog
+" autocmd BufNewFile,BufRead *.sv set syntax=systemverilog
 
 set title
-
 " Tab == 2 spaces
 set tabstop=2 " Number of visual spaces per TAB.
 set softtabstop=2 " Number of spaces per TAB while editing.
@@ -43,9 +53,8 @@ set autoindent " Automatically indent lines while editing.
 set number
 
 " Code Folding
- set foldmethod=indent
- set foldlevelstart=10
- set foldnestmax=10
+set foldmethod=manual
+set foldcolumn=1
 
 " Splitting Panes
 set splitright 
@@ -65,5 +74,11 @@ inoremap jk <esc>
 " Run Python files
 autocmd filetype python nnoremap <buffer> <F5> :w<CR>:!clear;python3 %<CR>
 
+nnoremap <esc> :noh<return><esc>
+nnoremap <esc>^[ <esc>^[
+
 " Colorscheme is the basic nord currently.
-" colorscheme nord
+ colorscheme nord
+
+hi Visual cterm=NONE ctermbg=cyan   ctermfg=black
+hi Search cterm=NONE ctermbg=yellow ctermfg=black
