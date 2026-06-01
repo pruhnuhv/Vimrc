@@ -12,6 +12,7 @@ Plug 'yggdroot/indentline'
 Plug 'vim-airline/vim-airline'
 Plug 'preservim/nerdtree'
 Plug 'sheerun/vim-polyglot'
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'eslint/eslint'
 Plug 'w0rp/ale'
 Plug 'vhda/verilog_systemverilog.vim'
